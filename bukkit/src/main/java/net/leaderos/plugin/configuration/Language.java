@@ -56,6 +56,8 @@ public class Language extends OkaeriConfig {
 
         private String haveRequestOngoing = "&cPlease wait for your current request to be done!";
 
+        private String internalError = "&cSomething went wrong whilst updating the bonus credit amount!";
+
         /**
          * Help commands message
          */
@@ -280,6 +282,8 @@ public class Language extends OkaeriConfig {
             private String successfullyRemovedCredit = "{prefix} &aSuccessfully removed &e{amount} credit &afrom &b{target}&a.";
 
             private String receivedCredit = "{prefix} &aYou just received &e{amount} credit(s) &afrom &b{player}&a.";
+
+            private String successfullySetBonus = "{prefix} &aSuccessfully set bonus to &e{amount}.";
         }
 
         /**

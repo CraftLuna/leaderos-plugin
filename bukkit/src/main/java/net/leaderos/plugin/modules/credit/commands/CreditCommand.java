@@ -310,4 +310,38 @@ public class CreditCommand extends BaseCommand {
             }
         });
     }
+
+    /**
+     * Sets credit for target player
+     * @param sender executor
+     * @param amount new bonus amount
+     */
+    @SubCommand(value = "bonus")
+    @Permission("leaderos.credit.setbonus")
+    public void bonusCommand(CommandSender sender, Integer amount) {
+        if (sender instanceof Player && !RequestUtil.canRequest(((Player)sender).getUniqueId())) {
+            ChatUtil.sendMessage(sender, Bukkit.getInstance().getLangFile().getMessages().getHaveRequestOngoing());
+            return;
+        }
+
+        if (sender instanceof Player) {
+            RequestUtil.addRequest(((Player)sender).getUniqueId());
+        }
+
+        org.bukkit.Bukkit.getScheduler().runTaskAsynchronously(Bukkit.getInstance(), () -> {
+            boolean updated = LeaderOSAPI.getCreditManager().setBonus(amount);
+            if (updated) {
+                ChatUtil.sendMessage(sender, ChatUtil.replacePlaceholders(
+                        Bukkit.getInstance().getLangFile().getMessages().getCredit().getSuccessfullySetBonus(),
+                        new Placeholder("{amount}", String.valueOf(amount))
+                ));
+            }
+            else
+                ChatUtil.sendMessage(sender, Bukkit.getInstance().getLangFile().getMessages().getInternalError());
+
+            if (sender instanceof Player) {
+                RequestUtil.invalidate(((Player)sender).getUniqueId());
+            }
+        });
+    }
 }

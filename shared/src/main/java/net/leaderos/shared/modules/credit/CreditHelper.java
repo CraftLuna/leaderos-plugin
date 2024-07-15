@@ -93,4 +93,20 @@ public class CreditHelper {
             return null;
         }
     }
+
+    /**
+     * Sets credit to target player
+     * @param target to deposit
+     * @param amount amount of deposit
+     * @return Response of request
+     */
+    public static @Nullable Response setBonusRequest(int amount) {
+        try {
+            PostRequest postBonusCredit = new SetBonusRequest(amount);
+            return postBonusCredit.getResponse();
+        }
+        catch (Exception e) {
+            return null;
+        }
+    }
 }

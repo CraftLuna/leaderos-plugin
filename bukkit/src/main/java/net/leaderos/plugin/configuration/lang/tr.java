@@ -280,6 +280,8 @@ public class tr extends Language {
             private String successfullyRemovedCredit = "{prefix} &b{target} &aadlı oyuncunun &e{amount} kredisi &abaşarıyla silindi.";
 
             private String receivedCredit = "{prefix} &b{player} &aadlı oyuncudan &e{amount} kredi &aaldın.";
+
+            private String successfullySetBonus = "{prefix} &aBaşarıyla bonus kredi yüzdesi &e{amount} &aolarak güncellendi.";
         }
 
         /**

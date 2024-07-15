@@ -38,6 +38,18 @@ public class CreditManager {
      * @param amount to set
      * @return true if success
      */
+    public boolean setBonus(int amount) {
+        Response setBonusResponse = CreditHelper.setBonusRequest(amount);
+
+        return (Objects.requireNonNull(setBonusResponse).getResponseCode() == HttpURLConnection.HTTP_OK);
+    }
+
+    /**
+     * Sets player's credit
+     * @param target to set credit
+     * @param amount to set
+     * @return true if success
+     */
     public boolean set(String target, Double amount) {
         Response setCreditResponse = CreditHelper.setCreditRequest(target, amount);
 
