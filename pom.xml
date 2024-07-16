@@ -23,6 +23,13 @@
         <shared.version>1.1.4</shared.version>
     </properties>
 
+    <distributionManagement>
+        <repository>
+            <id>thoxia-private</id>
+            <url>https://repo.thoxia.com/private</url>
+        </repository>
+    </distributionManagement>
+
     <!-- Dependencies -->
     <dependencies>
         <!-- Lombok -->
