@@ -283,6 +283,10 @@ public class en extends Language {
 
             private String successfullySetBonus = "{prefix} &aSuccessfully set bonus to &e{amount}.";
 
+            private String successfullyCreatedCoupon = "{prefix} &aSuccessfully created a coupon for &e{amount}.";
+
+            private String gotACoupon = "{prefix} &aI got good news! You just received a coupon for &e{amount} credits&a! Code: &e{code}";
+
         }
 
         /**

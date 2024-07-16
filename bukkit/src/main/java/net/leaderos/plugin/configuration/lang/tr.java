@@ -282,6 +282,11 @@ public class tr extends Language {
             private String receivedCredit = "{prefix} &b{player} &aadlı oyuncudan &e{amount} kredi &aaldın.";
 
             private String successfullySetBonus = "{prefix} &aBaşarıyla bonus kredi yüzdesi &e{amount} &aolarak güncellendi.";
+
+            private String successfullyCreatedCoupon = "{prefix} &aBaşarıyla &e{amount} kredilik &abir kupon oluşturuldu.";
+
+            private String gotACoupon = "{prefix} &aSelam, &e{code} &akodunu kullanarak &e{amount} kredilik ödülünü alabilirsin! &bhttps://craftluna.net/gift";
+
         }
 
         /**

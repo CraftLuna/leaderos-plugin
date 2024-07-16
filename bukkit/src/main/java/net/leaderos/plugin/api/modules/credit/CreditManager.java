@@ -1,6 +1,7 @@
 package net.leaderos.plugin.api.modules.credit;
 
 import net.leaderos.shared.error.Error;
+import net.leaderos.shared.helpers.RandomUtil;
 import net.leaderos.shared.model.Response;
 import net.leaderos.shared.modules.credit.CreditHelper;
 
@@ -34,8 +35,27 @@ public class CreditManager {
 
     /**
      * Sets player's credit
-     * @param target to set credit
      * @param amount to set
+     * @return true if success
+     */
+    public boolean createCoupon(String name, int amount) {
+        Response response = CreditHelper.createCouponRequest(name, amount);
+
+        return (Objects.requireNonNull(response).getResponseCode() == HttpURLConnection.HTTP_OK);
+    }
+
+    /**
+     * Sets player's credit
+     * @param amount to set
+     * @return true if success
+     */
+    public boolean createCoupon(int amount) {
+        return createCoupon(RandomUtil.randomString(8), amount);
+    }
+
+    /**
+     * Sets player's credit
+     * @param amount the new bonus amount
      * @return true if success
      */
     public boolean setBonus(int amount) {

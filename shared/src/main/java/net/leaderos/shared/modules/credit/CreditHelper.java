@@ -96,7 +96,6 @@ public class CreditHelper {
 
     /**
      * Sets credit to target player
-     * @param target to deposit
      * @param amount amount of deposit
      * @return Response of request
      */
@@ -104,6 +103,22 @@ public class CreditHelper {
         try {
             PostRequest postBonusCredit = new SetBonusRequest(amount);
             return postBonusCredit.getResponse();
+        }
+        catch (Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Sets credit to target player
+     * @param name to coupon name, not player's name!
+     * @param amount amount of the credits
+     * @return Response of request
+     */
+    public static @Nullable Response createCouponRequest(String name, int amount) {
+        try {
+            PostRequest createCouponRequest = new CreateCouponRequest(name, amount);
+            return createCouponRequest.getResponse();
         }
         catch (Exception e) {
             return null;

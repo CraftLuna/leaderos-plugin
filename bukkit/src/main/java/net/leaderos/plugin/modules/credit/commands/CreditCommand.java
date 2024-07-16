@@ -13,6 +13,7 @@ import net.leaderos.plugin.helpers.ChatUtil;
 import net.leaderos.shared.error.Error;
 import net.leaderos.shared.helpers.MoneyUtil;
 import net.leaderos.shared.helpers.Placeholder;
+import net.leaderos.shared.helpers.RandomUtil;
 import net.leaderos.shared.helpers.RequestUtil;
 import net.leaderos.shared.modules.credit.enums.UpdateType;
 import org.bukkit.command.CommandSender;
@@ -334,6 +335,46 @@ public class CreditCommand extends BaseCommand {
                 ChatUtil.sendMessage(sender, ChatUtil.replacePlaceholders(
                         Bukkit.getInstance().getLangFile().getMessages().getCredit().getSuccessfullySetBonus(),
                         new Placeholder("{amount}", String.valueOf(amount))
+                ));
+            }
+            else
+                ChatUtil.sendMessage(sender, Bukkit.getInstance().getLangFile().getMessages().getInternalError());
+
+            if (sender instanceof Player) {
+                RequestUtil.invalidate(((Player)sender).getUniqueId());
+            }
+        });
+    }
+
+    /**
+     * Sets credit for target player
+     * @param sender executor
+     * @param amount new bonus amount
+     */
+    @SubCommand(value = "coupon", alias = "kupon")
+    @Permission("leaderos.credit.coupon")
+    public void couponCommand(CommandSender sender, Player target, Integer amount) {
+        if (sender instanceof Player && !RequestUtil.canRequest(((Player)sender).getUniqueId())) {
+            ChatUtil.sendMessage(sender, Bukkit.getInstance().getLangFile().getMessages().getHaveRequestOngoing());
+            return;
+        }
+
+        if (sender instanceof Player) {
+            RequestUtil.addRequest(((Player)sender).getUniqueId());
+        }
+
+        org.bukkit.Bukkit.getScheduler().runTaskAsynchronously(Bukkit.getInstance(), () -> {
+            String code = RandomUtil.randomString(8);
+            boolean created = LeaderOSAPI.getCreditManager().createCoupon(code, amount);
+            if (created) {
+                ChatUtil.sendMessage(sender, ChatUtil.replacePlaceholders(
+                        Bukkit.getInstance().getLangFile().getMessages().getCredit().getSuccessfullyCreatedCoupon(),
+                        new Placeholder("{amount}", String.valueOf(amount))
+                ));
+                ChatUtil.sendMessage(target, ChatUtil.replacePlaceholders(
+                        Bukkit.getInstance().getLangFile().getMessages().getCredit().getGotACoupon(),
+                        new Placeholder("{amount}", String.valueOf(amount)),
+                        new Placeholder("{code}", code)
                 ));
             }
             else

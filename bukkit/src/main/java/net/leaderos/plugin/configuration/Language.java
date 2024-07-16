@@ -284,6 +284,11 @@ public class Language extends OkaeriConfig {
             private String receivedCredit = "{prefix} &aYou just received &e{amount} credit(s) &afrom &b{player}&a.";
 
             private String successfullySetBonus = "{prefix} &aSuccessfully set bonus to &e{amount}.";
+
+            private String successfullyCreatedCoupon = "{prefix} &aSuccessfully created a coupon for &e{amount}.";
+
+            private String gotACoupon = "{prefix} &aI got good news! You just received a coupon for &e{amount} credits&a! Code: &e{code}";
+
         }
 
         /**
