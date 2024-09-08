@@ -11,7 +11,6 @@ import net.leaderos.bungee.configuration.Modules;
 import net.leaderos.bungee.helpers.ChatUtil;
 import net.leaderos.bungee.helpers.DebugBungee;
 import net.leaderos.bungee.modules.auth.AuthModule;
-import net.leaderos.bungee.modules.connect.ConnectModule;
 import net.leaderos.bungee.modules.credit.CreditModule;
 import net.leaderos.bungee.modules.discord.DiscordModule;
 import net.leaderos.shared.Shared;
@@ -84,7 +83,6 @@ public class Bungee extends Plugin {
         getModuleManager().registerModule(new AuthModule());
         getModuleManager().registerModule(new DiscordModule());
         getModuleManager().registerModule(new CreditModule());
-        getModuleManager().registerModule(new ConnectModule());
 
         if (getConfigFile().getSettings().getUrl().equals("https://yourwebsite.com")) {
             getLogger().warning(ChatUtil.getMessage(getLangFile().getMessages().getChangeApiUrl()));
